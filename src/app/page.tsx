@@ -316,7 +316,7 @@ const HeroCarousel = ({ onInventory }: { onInventory: () => void }) => {
   }, [slides.length]);
   return (
     <>
-      <div style={{ position: "relative",height: "100svh", minHeight: 600, overflow: "hidden" }}>
+      <div className="hero-full-height" style={{ position: "relative", height: "100svh", minHeight: 600, overflow: "hidden" }}>
         {slides.map((s, i) => (
           <div key={i} style={{ position: "absolute", inset: 0, transition: "opacity 1s", opacity: i === current ? 1 : 0 }}>
             <img src={s.url} alt={s.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -1273,7 +1273,8 @@ const AboutPage = () => {
           <div style={{ borderLeft: "4px solid #C0392B", paddingLeft: "30px" }}><p style={{ fontFamily: playfair, fontSize: "22px", color: "white", fontStyle: "italic", opacity: 0.8, margin: 0 }}>"JUST DON'T DREAM IT OWN IT"</p></div>
         </div>
       </section>
-      <style>{`.about-section{min-height:100vh!important;min-height:100svh!important}@media(max-width:1024px){.about-section-pad{padding:60px 20px!important}.about-hero-text{padding-left:30px!important;padding-right:30px!important}.about-story-grid,.about-showrooms-grid,.about-celeb-grid,.about-aim-grid{grid-template-columns:1fr!important;gap:40px!important}}@media(max-width:768px){.about-hero-text{padding:0 20px 50px 20px!important}.about-hero-text p{width:100%!important;font-size:clamp(15px,4.5vw,20px)!important;line-height:1.75!important}.about-story-grid,.about-showrooms-grid,.about-celeb-grid,.about-aim-grid{grid-template-columns:1fr!important;gap:32px!important}}`}</style>
+      <style>{`.about-section{min-height:125vh!important;min-height:125svh!important}
+@media(max-width:768px){.about-section{min-height:100svh!important;min-height:100vh!important}}@media(max-width:1024px){.about-section-pad{padding:60px 20px!important}.about-hero-text{padding-left:30px!important;padding-right:30px!important}.about-story-grid,.about-showrooms-grid,.about-celeb-grid,.about-aim-grid{grid-template-columns:1fr!important;gap:40px!important}}@media(max-width:768px){.about-hero-text{padding:0 20px 50px 20px!important}.about-hero-text p{width:100%!important;font-size:clamp(15px,4.5vw,20px)!important;line-height:1.75!important}.about-story-grid,.about-showrooms-grid,.about-celeb-grid,.about-aim-grid{grid-template-columns:1fr!important;gap:32px!important}}`}</style>
     </div>
   );
 };
