@@ -1237,7 +1237,7 @@ const AboutPage = () => {
             <h2 style={{ ...giantHeadingStyle, color: "#1A1A1A", marginBottom: "30px" }}>OUR <span style={{ color: "#C0392B" }}>STORY</span></h2>
             <p style={{ color: "#6B7280", fontSize: "18px", lineHeight: "1.5", textAlign: "justify" }}>SSK CARS was built on a simple idea — buying a car should feel just as exciting and trustworthy as driving one. Based in Lucknow, we specialize in premium pre-owned vehicles that combine quality, performance, and value. Every car in our collection is carefully selected and inspected, ensuring our customers drive away with complete confidence.</p>
             <div style={{ marginTop: "40px", display: "flex", gap: "30px", flexWrap: "wrap" }}>
-              {[{ num: "600+", label: "Cars Sold" }, { num: "25+", label: "Years Exp" }, { num: "2", label: "Showrooms" }].map(stat => (
+              {[{ num: "25000+", label: "Cars Sold" }, { num: "25+", label: "Years Exp" }, { num: "2", label: "Showrooms" }].map(stat => (
                 <div key={stat.label}><span style={{ fontFamily: "'Montserrat', sans-serif", color: "#C0392B", fontSize: "clamp(24px, 5vw, 40px)", fontWeight: 600, display: "block" }}>{stat.num}</span><span style={{ color: "#9CA3AF", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>{stat.label}</span></div>
               ))}
             </div>
