@@ -164,7 +164,7 @@ const CarCard = ({ car, onViewDetails, onWhatsApp }: {
       </div>
     </div>
     <div style={{ padding: "20px 30px 30px", display: "flex", flexDirection: "column", flex: 1 }}>
-  <h3 style={{ fontSize: "28px", fontWeight: 700, color: "#1A1A1A", marginBottom: "4px", lineHeight: 1.2, height: "48px", overflow: "hidden", textAlign: "center" }}>{car.brand} {car.model}</h3>
+  <h3 style={{ fontSize: "clamp(16px, 4vw, 28px)", fontWeight: 700, color: "#1A1A1A", marginBottom: "4px", lineHeight: 1.2, textAlign: "center", wordBreak: "break-word", whiteSpace: "normal" }}>{car.brand} {car.model}</h3>
 <div style={{ fontSize: "26px", fontWeight: 700, color: "#1A1A1A", marginBottom: "25px", textAlign: "center" }}>₹ {car.price.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</div>
   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px", paddingBottom: "25px", borderBottom: "1px solid #eee", marginBottom: "25px" }}>
     <div style={{ textAlign: "center" }}><div style={{ fontSize: "12px", color: "#9CA3AF", fontWeight: 700, marginBottom: "4px", textTransform: "uppercase" }}>KM</div><div style={{ fontWeight: 700, fontSize: "14px", color: "#1A1A1A" }}>{car.km_driven.toLocaleString("en-IN")}</div></div>
@@ -238,7 +238,7 @@ const Header = ({ currentPage, setPage, scrolled }: {
       <header style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, boxShadow: scrolled ? "0 10px 30px rgba(0,0,0,0.5)" : "none", transition: "all 0.3s" }}>
         <div className="header-desktop-row" style={{ background: "#000000", padding: "0 60px", display: "flex", alignItems: "center", justifyContent: "space-between", height: "110px" }}>
           <div style={{ display: "flex", gap: "28px", flex: 1 }}>
-            {[{ name: "facebook", url: "https://www.facebook.com/sskcars" }, { name: "instagram", url: "https://www.instagram.com/ssk_cars_lko" }, { name: "youtube", url: "https://youtube.com/@sskcars-001?si=dMhZMibQQSH__EPI" }].map(social => (
+            {[{ name: "facebook", url: "https://www.facebook.com/share/1XJZUX3pwo/" }, { name: "instagram", url: "https://www.instagram.com/ssk_cars_lko" }, { name: "youtube", url: "https://youtube.com/@sskcars-001?si=dMhZMibQQSH__EPI" }].map(social => (
               <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" style={{ color: "white", opacity: 0.9, transition: "0.2s" }} onMouseEnter={e => e.currentTarget.style.color = "#C0392B"} onMouseLeave={e => e.currentTarget.style.color = "white"}><Icon name={social.name} size={26} /></a>
             ))}
           </div>
@@ -280,7 +280,7 @@ const Header = ({ currentPage, setPage, scrolled }: {
               );
             })}
             <div style={{ display: "flex", gap: "30px", padding: "40px 30px" }}>
-              {[{ name: "facebook", url: "https://www.facebook.com/sskcars" }, { name: "instagram", url: "https://www.instagram.com/ssk_cars_lko" }, { name: "youtube", url: "https://youtube.com/@sskcars-001?si=dMhZMibQQSH__EPI" }].map(social => (
+              {[{ name: "facebook", url: "https://www.facebook.com/share/1XJZUX3pwo/" }, { name: "instagram", url: "https://www.instagram.com/ssk_cars_lko" }, { name: "youtube", url: "https://youtube.com/@sskcars-001?si=dMhZMibQQSH__EPI" }].map(social => (
                 <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" style={{ color: "rgba(255,255,255,0.6)" }}><Icon name={social.name} size={28} /></a>
               ))}
             </div>
@@ -1862,16 +1862,26 @@ const displayKm = form.km_driven ? Number(form.km_driven).toLocaleString("en-IN"
   <input id="car-image-upload" type="file" accept="image/*" multiple disabled={uploading || form.images.length >= 20} onChange={handleFileChange} style={{ display: "none" }} />
 </label>
           {form.images.length > 0 && (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: 10 }}>
-              {form.images.map((img: string, i: number) => (
-  <div key={i} style={{ position: "relative", height: 90, borderRadius: 10, overflow: "hidden", border: i === 0 ? "2px solid #C0392B" : "2px solid #E5E7EB" }}>
-                  <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  <button onClick={() => removeImage(i)} style={{ position: "absolute", top: 4, right: 4, width: 22, height: 22, background: "#C0392B", border: "none", borderRadius: "50%", color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700 }}>✕</button>
-                  {i === 0 && <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(0,0,0,0.6)", color: "white", fontSize: 9, fontWeight: 700, textAlign: "center", padding: "3px 0" }}>PRIMARY</div>}
-                </div>
-              ))}
-            </div>
-          )}
+  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: 10 }}>
+    {form.images.map((img: string, i: number) => (
+      <div key={i} style={{ position: "relative", borderRadius: 10, overflow: "hidden", border: i === 0 ? "2px solid #C0392B" : "2px solid #E5E7EB" }}>
+        <img src={img} alt="" style={{ width: "100%", height: 90, objectFit: "cover", display: "block" }} />
+        <button onClick={() => removeImage(i)} style={{ position: "absolute", top: 4, right: 4, width: 22, height: 22, background: "#C0392B", border: "none", borderRadius: "50%", color: "white", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 12, fontWeight: 700 }}>✕</button>
+        {i === 0
+          ? <div style={{ background: "rgba(192,57,43,0.85)", color: "white", fontSize: 9, fontWeight: 800, textAlign: "center", padding: "4px 0", letterSpacing: "0.08em" }}>PRIMARY</div>
+          : <button onClick={() => {
+              const imgs = [...form.images];
+              const [sel] = imgs.splice(i, 1);
+              imgs.unshift(sel);
+              setForm(f => ({ ...f, images: imgs }));
+            }} style={{ width: "100%", background: "#1A1A1A", color: "white", border: "none", fontSize: 9, fontWeight: 800, padding: "4px 0", cursor: "pointer", letterSpacing: "0.08em", fontFamily: "inherit" }}>
+              SET PRIMARY
+            </button>
+        }
+      </div>
+    ))}
+  </div>
+)}
           {errors.images && <div style={{ color: "#C0392B", fontSize: 12, fontWeight: 600, marginTop: 8 }}>{errors.images}</div>}
         </div>
         <button onClick={handleSubmit} disabled={uploading} style={{ width: "100%", padding: "20px", background: form.images.length >= 6 && wordCount >= 50 && !uploading ? "#C0392B" : "#E5E7EB", color: form.images.length >= 6 && wordCount >= 50 && !uploading ? "white" : "#9CA3AF", border: "none", borderRadius: 12, fontWeight: 900, fontSize: 17, cursor: uploading ? "not-allowed" : "pointer", fontFamily: "inherit", letterSpacing: "0.05em", textTransform: "uppercase", transition: "all 0.2s" }}>
@@ -1900,6 +1910,7 @@ const CarEditPage = ({ car, onBack, onUpdate, onDelete, showToast }: {
   rto: car.rto || "",
   engine: car.engine || "",    // ADD THIS
   drive: car.drive || "",      // ADD THIS
+  body_type: car.body_type || "Sedan", 
   feature_1_title: car.feature_1_title || "", feature_1_desc: car.feature_1_desc || "",
   feature_2_title: car.feature_2_title || "", feature_2_desc: car.feature_2_desc || "",
   feature_3_title: car.feature_3_title || "", feature_3_desc: car.feature_3_desc || "",
@@ -1959,6 +1970,7 @@ const CarEditPage = ({ car, onBack, onUpdate, onDelete, showToast }: {
   rto: form.rto,
   engine: form.engine,    // ADD THIS
   drive: form.drive, 
+    body_type: form.body_type, 
   feature_1_title: form.feature_1_title, feature_1_desc: form.feature_1_desc,
   feature_2_title: form.feature_2_title, feature_2_desc: form.feature_2_desc,
   feature_3_title: form.feature_3_title, feature_3_desc: form.feature_3_desc,
@@ -2027,6 +2039,7 @@ const CarEditPage = ({ car, onBack, onUpdate, onDelete, showToast }: {
           <AdminInput label="Price (₹)" type="number" placeholder="e.g. 1250000" value={form.price} onChange={set("price")} required />
           <AdminInput label="Registration Year" type="number" placeholder="e.g. 2022" value={form.year} onChange={set("year")} required />
           <AdminSelect label="Fuel Type" value={form.fuel_type} onChange={set("fuel_type")} required options={["Petrol", "Diesel", "CNG", "Electric"].map(f => ({ value: f, label: f }))} />
+            <AdminSelect label="Body Type" value={form.body_type} onChange={set("body_type")} required options={[{ value: "Sedan", label: "Sedan" }, { value: "SUV", label: "SUV" }, { value: "Hatchback", label: "Hatchback" }, { value: "Luxury", label: "Coupe" }]} />
           <AdminInput label="Mileage / KM Driven" type="number" placeholder="e.g. 35000" value={form.km_driven} onChange={set("km_driven")} required />
           <AdminSelect label="Transmission" value={form.transmission} onChange={set("transmission")} required options={["Manual", "Automatic"].map(f => ({ value: f, label: f }))} />
           <AdminSelect label="Number of Owners" value={form.owners} onChange={set("owners")} required options={[1, 2, 3, 4].map(n => ({ value: n, label: n === 4 ? "4+ Owners" : `${n} Owner${n > 1 ? "s" : ""}` }))} />
@@ -2061,15 +2074,27 @@ const CarEditPage = ({ car, onBack, onUpdate, onDelete, showToast }: {
 </div>
         <div style={{ marginBottom: 28 }}>
           <label style={{ display: "block", fontSize: 12, fontWeight: 800, color: "#6B7280", marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.08em" }}>Car Images <span style={{ fontSize: 11, color: "#9CA3AF", fontWeight: 600, textTransform: "none" }}>— First image is primary</span></label>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: 10, marginBottom: 12 }}>
-            {form.images.map((img: string, i: number) => (
-  <div key={i} style={{ position: "relative", height: 80, borderRadius: 10, overflow: "hidden", border: i === 0 ? "2px solid #C0392B" : "2px solid #E5E7EB" }}>
-                <img src={img} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                {form.images.length > 1 && <button onClick={() => setForm(f => ({ ...f, images: f.images.filter((_, idx) => idx !== i) }))} style={{ position: "absolute", top: 3, right: 3, width: 20, height: 20, background: "#C0392B", border: "none", borderRadius: "50%", color: "white", cursor: "pointer", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>}
-                {i === 0 && <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "rgba(192,57,43,0.85)", color: "white", fontSize: 8, fontWeight: 800, textAlign: "center", padding: "2px 0", letterSpacing: "0.08em" }}>PRIMARY</div>}
-              </div>
-            ))}
-          </div>
+         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))", gap: 10, marginBottom: 12 }}>
+  {form.images.map((img: string, i: number) => (
+    <div key={i} style={{ position: "relative", borderRadius: 10, overflow: "hidden", border: i === 0 ? "2px solid #C0392B" : "2px solid #E5E7EB" }}>
+      <img src={img} alt="" style={{ width: "100%", height: 80, objectFit: "cover", display: "block" }} />
+      {form.images.length > 1 && (
+        <button onClick={() => setForm(f => ({ ...f, images: f.images.filter((_, idx) => idx !== i) }))} style={{ position: "absolute", top: 3, right: 3, width: 20, height: 20, background: "#C0392B", border: "none", borderRadius: "50%", color: "white", cursor: "pointer", fontSize: 11, fontWeight: 700, display: "flex", alignItems: "center", justifyContent: "center" }}>✕</button>
+      )}
+      {i === 0
+        ? <div style={{ background: "rgba(192,57,43,0.85)", color: "white", fontSize: 8, fontWeight: 800, textAlign: "center", padding: "3px 0", letterSpacing: "0.08em" }}>PRIMARY</div>
+        : <button onClick={() => {
+            const imgs = [...form.images];
+            const [sel] = imgs.splice(i, 1);
+            imgs.unshift(sel);
+            setForm(f => ({ ...f, images: imgs }));
+          }} style={{ width: "100%", background: "#1A1A1A", color: "white", border: "none", fontSize: 8, fontWeight: 800, padding: "3px 0", cursor: "pointer", letterSpacing: "0.08em", fontFamily: "inherit" }}>
+            SET PRIMARY
+          </button>
+      }
+    </div>
+  ))}
+</div>
           <label style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "10px 20px", background: "#F3F4F6", border: "2px dashed #D1D5DB", borderRadius: 10, cursor: "pointer", fontSize: 13, fontWeight: 700, color: "#374151" }}>
             <Icon name="plus" size={16} /> {uploading ? "Uploading..." : "Add More Images"}
             <input type="file" accept="image/*" multiple disabled={uploading} style={{ display: "none" }} onChange={uploadMoreImages} />
